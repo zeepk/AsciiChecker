@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ascii Keyboard Checker</title>
+    <p class="headerBar">
+      Made by
+      <a href="https://matthughes-portfolio.netlify.com/" target="_blank"
+        >Matt Hughes</a
+      >
+    </p>
+  </head>
+  <body>
+    <style>
+      html {
+        font-family: sans-serif;
+        height: 100%;
+      }
+      body {
+        height: 100%;
+        margin-top: 10;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background: rgb(35, 24, 68);
+        background: linear-gradient(
+          0deg,
+          rgba(35, 24, 68, 1) 0%,
+          rgba(110, 91, 144, 1) 100%
+        );
+      }
+      .headerBar {
+        font-size: 15px;
+        padding: 0;
+      }
+      .keyFrame {
+        margin: 50px auto;
+        text-align: center;
+        border-radius: 5px;
+      }
+      a {
+        color: white;
+      }
+      p {
+        color: white;
+        margin: 0;
+        padding: 20px;
+
+        font-family: "arial";
+        font-size: 40px;
+        font-weight: 200;
+      }
+      #keyFrameTitle {
+        visibility: hidden;
+        font-size: 20px;
+      }
+    </style>
+    <div class="keyFrame">
+      <p id="keyFrameTitle">Ascii:</p>
+      <p class="keyFrameInner">
+        Press Any Key to See the ASCII Value
+      </p>
+      <br />
+      <p id="keyFrameTitle">Key Pressed:</p>
+      <p class="letterDisplay"></p>
+    </div>
+
+    <script>
+      const keyFrame = document.getElementsByClassName("keyFrameInner");
+      const letterDisplay = document.getElementsByClassName("letterDisplay");
+      const keyFrameTitle = document.querySelectorAll("#keyFrameTitle");
+
+      function handleKeypress(e) {
+        keyFrameTitle[0].style.visibility = "visible";
+        keyFrameTitle[1].style.visibility = "visible";
+        // console.log(e);
+        keyFrame[0].innerHTML = e.charCode;
+
+        if (e.shiftKey && e.charCode >= 65 && e.charCode <= 90) {
+          letterDisplay[0].innerHTML = "Uppercase " + e.key;
+        } else if (e.charCode >= 97 && e.charCode <= 122) {
+          letterDisplay[0].innerHTML = "Lowercase " + e.key;
+        } else {
+          letterDisplay[0].innerHTML = e.key;
+        }
+      }
+
+      document.addEventListener("keypress", handleKeypress);
+    </script>
+  </body>
+</html>
